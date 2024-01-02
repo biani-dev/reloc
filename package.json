@@ -1,6 +1,6 @@
 {
   "name": "reloc",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React control structures components",
   "author": "TuyenNV <tuyennv.se@gmail.com>",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "url": "https://github.com/biani-dev/reloc"
   },
   "scripts": {
-    "build": "microbundle build -i src/index.js -o dist/index.js",
+    "build": "microbundle build -i src/index.js -o dist/index.js --jsx React.createElement",
     "test": "jest",
     "update": "yarn upgrade-interactive"
   },
