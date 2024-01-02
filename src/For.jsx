@@ -3,29 +3,6 @@ import {isFn, isObject} from './utils';
 
 /**
  *
- * @param {Array|Map|Set|Object} items
- * @param {React.ReactNode|JSX.Element|Function} children
- * @returns {JSX.Element}
- * @constructor
- */
-export const For = ({items, children}) => {
-  if (!isFn(children)) {
-    children = () => children;
-  }
-
-  if (items instanceof Array) {
-    return <ForArray items={items} children={children}></ForArray>
-  } else if (items instanceof Set) {
-    return <ForSet items={items} children={children}></ForSet>
-  } else if (items instanceof Map) {
-    return <ForMap items={items} children={children}></ForMap>
-  } else if (isObject(items)) {
-    return <ForObject items={items} children={children}></ForObject>
-  }
-};
-
-/**
- *
  * @param {Array} items
  * @param {Function} children
  * @returns {Array<React.Component>}
@@ -87,4 +64,27 @@ const ForSet = ({items, children}) => {
   }
 
   return components;
+};
+
+/**
+ *
+ * @param {Array|Map|Set|Object} items
+ * @param {React.ReactNode|JSX.Element|Function} children
+ * @returns {JSX.Element}
+ * @constructor
+ */
+export const For = ({items, children}) => {
+  if (!isFn(children)) {
+    children = () => children;
+  }
+
+  if (items instanceof Array) {
+    return <ForArray items={items} children={children}></ForArray>
+  } else if (items instanceof Set) {
+    return <ForSet items={items} children={children}></ForSet>
+  } else if (items instanceof Map) {
+    return <ForMap items={items} children={children}></ForMap>
+  } else if (isObject(items)) {
+    return <ForObject items={items} children={children}></ForObject>
+  }
 };
