@@ -1,4 +1,4 @@
-# React Control Flow
+# React logic components
 
 [![npm](https://img.shields.io/npm/v/reloc?logo=npm)](https://www.npmjs.com/package/reloc)
 [![License](https://img.shields.io/github/license/biani-dev/reloc?logo=github&logoColor=959DA5&labelColor=2D3339)](https://github.com/biani-dev/reloc/blob/main/LICENSE)
