@@ -1,0 +1,46 @@
+{
+  "name": "reloc",
+  "version": "0.0.1",
+  "description": "React control structures components",
+  "author": "TuyenNV <tuyennv.se@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.mjs",
+  "exports": {
+    "import": "./dist/index.esm.mjs",
+    "require": "./dist/index.js"
+  },
+  "sideEffects": false,
+  "homepage": "https://github.com/biani-dev/reloc",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biani-dev/reloc"
+  },
+  "scripts": {
+    "build": "microbundle build -i src/index.js -o dist/index.js",
+    "test": "jest",
+    "update": "yarn upgrade-interactive"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-react": "^7.23.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@types/jest": "^29.5.11",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "microbundle": "^0.15.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "peerDependencies": {
+    "react": "^16.x || ^17.x || ^18.x"
+  }
+}
