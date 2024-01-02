@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import {For} from '../src';
+import {For} from '../dist';
 
 const items = {
   k1: {id: 1, name: 'Museum'},

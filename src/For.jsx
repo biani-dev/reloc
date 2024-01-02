@@ -79,12 +79,12 @@ export const For = ({items, children}) => {
   }
 
   if (items instanceof Array) {
-    return <ForArray items={items} children={children}></ForArray>
+    return ForArray({items, children}); // <ForArray items={items} children={children}></ForArray>
   } else if (items instanceof Set) {
-    return <ForSet items={items} children={children}></ForSet>
+    return ForSet({items, children}); // <ForSet items={items} children={children}></ForSet>
   } else if (items instanceof Map) {
-    return <ForMap items={items} children={children}></ForMap>
+    return ForMap({items, children}); // <ForMap items={items} children={children}></ForMap>
   } else if (isObject(items)) {
-    return <ForObject items={items} children={children}></ForObject>
+    return ForObject({items, children}); // <ForObject items={items} children={children}></ForObject>
   }
 };

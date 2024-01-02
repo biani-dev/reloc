@@ -1,7 +1,7 @@
 {
   "name": "reloc",
-  "version": "0.0.5",
-  "description": "React control structures components",
+  "version": "1.0.0",
+  "description": "React logic (control statements) components",
   "author": "TuyenNV <tuyennv.se@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",

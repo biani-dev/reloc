@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import {If} from '../src';
+import {If} from '../dist';
 
 describe('If', () => {
   test('Truthy case', () => {
