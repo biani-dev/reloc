@@ -3,10 +3,10 @@ import {isFn, render} from "./utils.js";
 
 /**
  *
- * @param {any} match
+ * @param {BooleanLike} match
  * @param {boolean} strict
- * @param {React.ReactNode|JSX.Element|Function} children
- * @returns {React.Component|null}
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 export const Switch = ({children, strict = true, match = undefined}) => {
@@ -41,9 +41,9 @@ export const Switch = ({children, strict = true, match = undefined}) => {
 
 /**
  *
- * @param {any} check
- * @param {React.ReactNode|JSX.Element|Function|null} children
- * @returns {React.Component|null}
+ * @param {BooleanLike} check
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 export const Case = ({check, children = null}) => {
@@ -52,8 +52,8 @@ export const Case = ({check, children = null}) => {
 
 /**
  *
- * @param {React.ReactNode|JSX.Element|Function|null} children
- * @returns {React.Component|null}
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 export const Default = ({children = null}) => {

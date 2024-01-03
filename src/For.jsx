@@ -2,10 +2,10 @@ import React from "react";
 import {isFn, isObject} from './utils';
 
 /**
- *
+ * Loop component for Array data type.
  * @param {Array} items
- * @param {Function} children
- * @returns {Array<React.Component>}
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 const ForArray = ({items, children}) => {
@@ -15,10 +15,10 @@ const ForArray = ({items, children}) => {
 };
 
 /**
- *
+ * Loop component for Object data type.
  * @param {Object} items
- * @param {Function} children
- * @returns {Array<React.Component>}
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 const ForObject = ({items, children}) => {
@@ -29,10 +29,10 @@ const ForObject = ({items, children}) => {
 };
 
 /**
- *
+ * Loop component for Map data type.
  * @param {Map} items
- * @param {Function} children
- * @returns {Array<React.Component>}
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 const ForMap = ({items, children}) => {
@@ -48,10 +48,10 @@ const ForMap = ({items, children}) => {
 };
 
 /**
- *
+ * Loop component for Set data type.
  * @param {Set} items
- * @param {Function} children
- * @returns {Array<React.Component>}
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 const ForSet = ({items, children}) => {
@@ -67,10 +67,10 @@ const ForSet = ({items, children}) => {
 };
 
 /**
- *
- * @param {Array|Map|Set|Object} items
- * @param {React.ReactNode|JSX.Element|Function} children
- * @returns {JSX.Element}
+ * Loop component
+ * @param {IteratorLike} items
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 export const For = ({items, children}) => {

@@ -1,10 +1,10 @@
 import {render} from "./utils.js";
 
 /**
- *
- * @param {any} conditionResult
- * @param {React.ReactNode|JSX.Element|Function|null} children
- * @returns {React.Component|null}
+ * Simple condition component.
+ * @param {BooleanLike} conditionResult
+ * @param {JSX.Element | ReactElement | Function | null} children
+ * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
 export const If = ({check: conditionResult, children = null}) => {
