@@ -5,6 +5,7 @@ export type NonNullObject = {} & object;
 
 export type BooleanLike = boolean | string | number | null | undefined;
 
+// @ts-ignore
 export type IteratorLike = Array<any> | Set<any> | Map<string, any> | NonNullObject;
 
 export declare const If: FC<PropsWithChildren<{ check: BooleanLike }>>;
