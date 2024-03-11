@@ -173,3 +173,40 @@ describe('Switch with match, disable check data type', () => {
     expect(screen.queryByTestId('case2')).toBeNull();
   });
 });
+
+describe('Inline syntax', () => {
+  test('Truthy cases', () => {
+    render(
+      <Switch>
+        <Case check={1 > 2} then={() => (
+          <span data-testid="case1">Case1</span>
+        )} />
+        <Case check={1 < 2} then={() => (
+          <span data-testid="case2">Case2</span>
+        )} />
+        <Default then={() => (
+          <span data-testid="default">Default</span>
+        )} />
+      </Switch>
+    );
+
+    expect(screen.queryByTestId('case1')).toBeNull();
+    expect(screen.queryByTestId('case2')).toContainHTML('<span data-testid="case2">Case2</span>');
+  });
+
+
+  test('Default case', () => {
+    render(
+      <Switch>
+        <Case check={1 > 2} then={() => (
+          <span data-testid="case1">Case1</span>
+        )} />
+        <Default then={() => (
+          <span data-testid="default">Default</span>
+        )} />
+      </Switch>
+    );
+
+    expect(screen.queryByTestId('default')).toContainHTML('<span data-testid="default">Default</span>');
+  });
+});

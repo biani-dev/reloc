@@ -38,7 +38,7 @@ To fix this issue, the code should be written like this:
 ```
 or alternative syntax:
 ```jsx
-<If check={ obj } children={() => (
+<If check={ obj } then={() => (
   <span>{ obj.attr }</span>
 )} />
 ```
@@ -62,9 +62,10 @@ These are packages I really like but have to be cautious about due to the follow
 
 ### 1. Simple condition
 #### &lt;If&gt;
-| Property | Type    | Required |
-|----------|---------|----------|
-| `check`  | Boolean | yes      |
+| Property             | Type                      | Required |
+|----------------------|---------------------------|----------|
+| `check`              | Boolean                   | yes      |
+| `then` or `children` | ReactNode, Function, null | no       |
 
 Example 01:
 ```jsx
@@ -84,7 +85,7 @@ or deferred syntax:
 ```
 or alternative syntax:
 ```jsx
-<If check={ obj } children={() => (
+<If check={ obj } then={() => (
   <span>It is done</span>
 )} />
 ```
@@ -99,15 +100,16 @@ Only the first case that satisfies the condition will be rendered.
 | `strict`     | Boolean                 | no       | true    | Only available for 'Switch mode.' If `strict` is true, it will check the data type of the `match` when comparing with the case value. See the example below for a better understanding. |
 
 ### &lt;Case&gt;
-| Property | Type    | Required |
-|----------|---------|----------|
-| `check`  | Boolean | yes      |
+| Property             | Type                      | Required |
+|----------------------|---------------------------|----------|
+| `check`              | Boolean                   | yes      |
+| `then` or `children` | ReactNode, Function, null | no       |
 
 ### &lt;Default&gt;
-| Property | Type | Required |
-|----------|------|----------|
-| `-`      |      |          |
-
+| Property             | Type                      | Required |
+|----------------------|---------------------------|----------|
+| `-`                  |                           |          |
+| `then` or `children` | ReactNode, Function, null | no       |
 Example 02 - Complex condition:
 ```jsx
 import {Switch, Case, Default} from  'reloc';
@@ -157,13 +159,13 @@ import {Switch, Case, Default} from  'reloc';
 import {Switch, Case, Default} from  'reloc';
 
 <Switch>
-  <Case check={status === DOING} children={() => (
+  <Case check={status === DOING} then={() => (
     <span>DOING</span>
   )} />
-  <Case check={status === DONE} children={() => (
+  <Case check={status === DONE} then={() => (
     <span>DONE</span>
   )} />
-  <Default children={() => (
+  <Default then={() => (
     <span>OTHER</span>
   )} />
 </Switch>
@@ -210,10 +212,10 @@ _Deferred syntax, alternative syntax similar to example 02._
 ### &lt;For&gt;
 Support Array, Set, Map, Object data types.
 
-| Property   | Type                                                                         | Required | Description                                                                                   |
-|------------|------------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------------------|
-| `items`    | Array, Map, Set, Object                                                      | yes      |                                                                                               |
-| `children` | Function: (item: any, key: String&#124;Number, index: Number) => JSX.Element | yes      | If the data type of the `items` is an Array or Set, the 'key' value will reference the index. |
+| Property   | Type                                                                       | Required | Description                                                                                   |
+|------------|----------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------------------|
+| `items`    | Array, Map, Set, Object                                                    | yes      |                                                                                               |
+| `children` | Function: (item: any, key: String&#124;Number, index: Number) => ReactNode | yes      | If the data type of the `items` is an Array or Set, the 'key' value will reference the index. |
 
 Example 05:
 ```jsx

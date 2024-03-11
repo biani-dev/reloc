@@ -21,4 +21,14 @@ describe('If', () => {
 
     expect(screen.queryByTestId('child-if')).toBeNull();
   });
+
+  test('Inline case', () => {
+    render(
+      <If check={true} then={() => (
+        <span data-testid="child-if">If</span>
+      )} />
+    );
+
+    expect(screen.getByTestId('child-if')).toContainHTML('<span data-testid="child-if">If</span>');
+  });
 });

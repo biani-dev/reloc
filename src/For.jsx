@@ -4,7 +4,7 @@ import {isFn, isObject} from './utils';
 /**
  * Loop component for Array data type.
  * @param {Array} items
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
@@ -17,7 +17,7 @@ const ForArray = ({items, children}) => {
 /**
  * Loop component for Object data type.
  * @param {Object} items
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
@@ -31,7 +31,7 @@ const ForObject = ({items, children}) => {
 /**
  * Loop component for Map data type.
  * @param {Map} items
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
@@ -50,7 +50,7 @@ const ForMap = ({items, children}) => {
 /**
  * Loop component for Set data type.
  * @param {Set} items
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
@@ -69,7 +69,7 @@ const ForSet = ({items, children}) => {
 /**
  * Loop component
  * @param {IteratorLike} items
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */

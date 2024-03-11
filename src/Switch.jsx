@@ -5,7 +5,7 @@ import {isFn, render} from "./utils.js";
  *
  * @param {BooleanLike} match
  * @param {boolean} strict
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
@@ -42,20 +42,22 @@ export const Switch = ({children, strict = true, match = undefined}) => {
 /**
  *
  * @param {BooleanLike} check
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null | undefined} then
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
-export const Case = ({check, children = null}) => {
-  return render({children});
+export const Case = ({check, then = null, children = null}) => {
+  return render({children: (then || children)});
 };
 
 /**
  *
- * @param {JSX.Element | ReactElement | Function | null} children
+ * @param {React.ReactNode | Function | null | undefined} then
+ * @param {React.ReactNode | Function | null} children
  * @returns {JSX.Element | ReactElement | null}
  * @constructor
  */
-export const Default = ({children = null}) => {
-  return render({children});
+export const Default = ({then = null, children = null}) => {
+  return render({children: (then || children)});
 };
