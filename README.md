@@ -110,6 +110,7 @@ Only the first case that satisfies the condition will be rendered.
 |----------------------|---------------------------|----------|
 | `-`                  |                           |          |
 | `then` or `children` | ReactNode, Function, null | no       |
+
 Example 02 - Complex condition:
 ```jsx
 import {Switch, Case, Default} from  'reloc';
