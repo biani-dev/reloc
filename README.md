@@ -18,47 +18,6 @@ yarn:
 yarn add reloc
 ```
 
-## Important: Deferring evaluation of children
-
-It's crucial to understand that in JavaScript, which is an eagerly evaluated language, the code inside both the &lt;If&gt;, &lt;Case&gt;, &lt;Default&gt;, and &lt;For&gt; components will be executed even if the condition turns out to be false.
-
-More specifically, the following code will throw an error `obj is not defined`:
-```jsx
-<If check={ obj }>
-  <span>{ obj.attr }</span>
-</If>
-```
-To fix this issue, the code should be written like this:
-```jsx
-<If check={ obj }>
-  {() =>  (
-    <span>{ obj.attr }</span>
-  )}
-</If>
-```
-or alternative syntax:
-```jsx
-<If check={ obj } then={() => (
-  <span>{ obj.attr }</span>
-)} />
-```
-
-Therefore, for safety and efficiency reasons, it's recommended to use arrow functions for the child components of &lt;If&gt;, &lt;Case&gt;, &lt;Default&gt;, &lt;For&gt;.
-
-For more discussion on If in React by the react team, have a look at <a href="https://github.com/reactjs/react-future/issues/35" id="issues35">https://github.com/reactjs/react-future/issues/35</a>.
-
-## Alternative Solutions
-As mentioned above, this package doesn't always run with the cleanest and most readable syntax. You'll need to use arrow functions for cases where children have complex logic to ensure safety.
-
-So, is there any solution for a more comprehensive implementation of control statements in JSX? The answer is YES. You can refer to the following packages:
-- [jsx-control-statements](https://www.npmjs.com/package/babel-plugin-jsx-control-statements)
-- [tsx-control-statements](https://www.npmjs.com/package/tsx-control-statements)
-
-These are packages I really like but have to be cautious about due to the following limitations:
-- Compatibility: They only support a specific transpiler (babel, tsx). As of the current date (2024-01-06), jsx-control-statements doesn't work with popular bundlers like Vite, esbuild, microbundle, etc.
-- Long-term support: Solutions using React components to implement control statements will remain compatible with newer React versions as long as React ensures backward compatibility. Projects based on transpiler plugins may need updates when a new transpiler version is released.
-- IDE lacks code highlighting support.
-
 ## API
 
 ### 1. Simple condition
@@ -235,3 +194,45 @@ or unsafe syntax:
   <span key={key}>{index}: {item.name}</span>
 )} />
 ```
+
+
+## Important: Deferring evaluation of children
+
+It's crucial to understand that in JavaScript, which is an eagerly evaluated language, the code inside both the &lt;If&gt;, &lt;Case&gt;, &lt;Default&gt;, and &lt;For&gt; components will be executed even if the condition turns out to be false.
+
+More specifically, the following code will throw an error `obj is not defined`:
+```jsx
+<If check={ obj }>
+  <span>{ obj.attr }</span>
+</If>
+```
+To fix this issue, the code should be written like this:
+```jsx
+<If check={ obj }>
+  {() =>  (
+    <span>{ obj.attr }</span>
+  )}
+</If>
+```
+or alternative syntax:
+```jsx
+<If check={ obj } then={() => (
+  <span>{ obj.attr }</span>
+)} />
+```
+
+Therefore, for safety and efficiency reasons, it's recommended to use arrow functions for the child components of &lt;If&gt;, &lt;Case&gt;, &lt;Default&gt;, &lt;For&gt;.
+
+For more discussion on If in React by the react team, have a look at <a href="https://github.com/reactjs/react-future/issues/35" id="issues35">https://github.com/reactjs/react-future/issues/35</a>.
+
+## Alternative Solutions
+As mentioned above, this package doesn't always run with the cleanest and most readable syntax. You'll need to use arrow functions for cases where children have complex logic to ensure safety.
+
+So, is there any solution for a more comprehensive implementation of control statements in JSX? The answer is YES. You can refer to the following packages:
+- [jsx-control-statements](https://www.npmjs.com/package/babel-plugin-jsx-control-statements)
+- [tsx-control-statements](https://www.npmjs.com/package/tsx-control-statements)
+
+These are packages I really like but have to be cautious about due to the following limitations:
+- Compatibility: They only support a specific transpiler (babel, tsx). As of the current date (2024-01-06), jsx-control-statements doesn't work with popular bundlers like Vite, esbuild, microbundle, etc.
+- Long-term support: Solutions using React components to implement control statements will remain compatible with newer React versions as long as React ensures backward compatibility. Projects based on transpiler plugins may need updates when a new transpiler version is released.
+- IDE lacks code highlighting support.

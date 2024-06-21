@@ -1,6 +1,6 @@
 {
   "name": "reloc",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "React logic (control statements) components",
   "author": "TuyenNV <tuyennv.se@gmail.com>",
   "license": "MIT",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/biani-dev/reloc"
+    "url": "git+https://github.com/biani-dev/reloc.git"
   },
   "scripts": {
     "build": "microbundle build -i src/index.js -o dist/index.js --jsx React.createElement && cp src/*.d.ts dist/",
