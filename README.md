@@ -42,9 +42,10 @@ or alternative syntax:
   <span>{ obj.attr }</span>
 )} />
 ```
+
 Therefore, for safety and efficiency reasons, it's recommended to use arrow functions for the child components of &lt;If&gt;, &lt;Case&gt;, &lt;Default&gt;, &lt;For&gt;.
 
-For more discussion on If in React by the react team, have a look at https://github.com/reactjs/react-future/issues/35.
+For more discussion on If in React by the react team, have a look at <a href="https://github.com/reactjs/react-future/issues/35" id="issues35">https://github.com/reactjs/react-future/issues/35</a>.
 
 ## Alternative Solutions
 As mentioned above, this package doesn't always run with the cleanest and most readable syntax. You'll need to use arrow functions for cases where children have complex logic to ensure safety.
@@ -71,11 +72,11 @@ Example 01:
 ```jsx
 import { If } from  'reloc';
 
-<If check={status === DONE}>
+<If check={ obj } then={() => (
   <span>It is done</span>
-</If>
+)} />
 ```
-or deferred syntax:
+or syntax:
 ```jsx
 <If check={status === DONE}>
   {() => (
@@ -83,11 +84,11 @@ or deferred syntax:
   )}
 </If>
 ```
-or alternative syntax:
+or unsafe syntax (Not recommend, [see react issue 35](#issues35)):
 ```jsx
-<If check={ obj } then={() => (
+<If check={status === DONE}>
   <span>It is done</span>
-)} />
+</If>
 ```
 
 ## 2. Complex conditional, Switch statements
@@ -116,19 +117,19 @@ Example 02 - Complex condition:
 import {Switch, Case, Default} from  'reloc';
 
 <Switch>
-  <Case check={status === DOING}>
+  <Case check={status === DOING} then={() => (
     <span>DOING</span>
-  </Case>
-  <Case check={status === DONE}>
+  )} />
+  <Case check={status === DONE} then={() => (
     <span>DONE</span>
-  </Case>
-  <Default>
+  )} />
+  <Default then={() => (
     <span>OTHER</span>
-  </Default>
+  )} />
 </Switch>
 ```
 <details>
-<summary>or deferred syntax:</summary>
+<summary>or syntax:</summary>
 
 ```jsx
 import {Switch, Case, Default} from  'reloc';
@@ -154,21 +155,21 @@ import {Switch, Case, Default} from  'reloc';
 </details>
 
 <details>
-<summary>or alternative syntax:</summary>
+<summary>or unsafe syntax (Not recommend, [see react issue 35](#issues35)):</summary>
 
 ```jsx
 import {Switch, Case, Default} from  'reloc';
 
 <Switch>
-  <Case check={status === DOING} then={() => (
+  <Case check={status === DOING}>
     <span>DOING</span>
-  )} />
-  <Case check={status === DONE} then={() => (
+  </Case>
+  <Case check={status === DONE}>
     <span>DONE</span>
-  )} />
-  <Default then={() => (
+  </Case>
+  <Default>
     <span>OTHER</span>
-  )} />
+  </Default>
 </Switch>
 ```
 </details>
@@ -178,15 +179,15 @@ Example 03: Switch mode:
 import {Switch, Case, Default} from  'reloc';
 
 <Switch match={status}>
-  <Case check={DOING}>
+  <Case check={DOING} then={() => (
     <span>DOING</span>
-  </Case>
-  <Case check={DONE}>
+  )} />
+  <Case check={DONE} then={() => (
     <span>DONE</span>
-  </Case>
-  <Default>
+  )} />
+  <Default then={() => (
     <span>OTHER</span>
-  </Default>
+  )} />
 </Switch>
 ```
 _Deferred syntax, alternative syntax similar to example 02._
@@ -196,15 +197,15 @@ Example 04: Switch mode with the `strict` prop off:
 import {Switch, Case, Default} from  'reloc';
 
 <Switch match={1} strict={false}>
-  <Case check={'1'}>
+  <Case check={'1'} then={() => (
     <span>Passed</span>
-  </Case>
-  <Case check={'2'}>
+  )} />
+  <Case check={'2'} then={() => (
     <span>Not passed</span>
-  </Case>
-  <Default>
+  )} />
+  <Default then={() => (
     <span>Not passed</span>
-  </Default>
+  )} />
 </Switch>
 ```
 _Deferred syntax, alternative syntax similar to example 02._
@@ -228,7 +229,7 @@ import {For} from  'reloc';
   )}
 </For>
 ```
-or alternative syntax:
+or unsafe syntax:
 ```jsx
 <For items={items} children={(item, key, index) => (
   <span key={key}>{index}: {item.name}</span>

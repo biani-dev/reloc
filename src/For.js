@@ -1,11 +1,10 @@
-import React from "react";
-import {isFn, isObject} from './utils';
+import {isFn, isObject, render} from './utils';
 
 /**
  * Loop component for Array data type.
  * @param {Array} items
- * @param {React.ReactNode | Function | null} children
- * @returns {JSX.Element | ReactElement | null}
+ * @param {LoopFunction} children
+ * @returns {ReactNode | null}
  * @constructor
  */
 const ForArray = ({items, children}) => {
@@ -17,8 +16,8 @@ const ForArray = ({items, children}) => {
 /**
  * Loop component for Object data type.
  * @param {Object} items
- * @param {React.ReactNode | Function | null} children
- * @returns {JSX.Element | ReactElement | null}
+ * @param {LoopFunction} children
+ * @returns {ReactNode | null}
  * @constructor
  */
 const ForObject = ({items, children}) => {
@@ -31,8 +30,8 @@ const ForObject = ({items, children}) => {
 /**
  * Loop component for Map data type.
  * @param {Map} items
- * @param {React.ReactNode | Function | null} children
- * @returns {JSX.Element | ReactElement | null}
+ * @param {LoopFunction} children
+ * @returns {ReactNode | null}
  * @constructor
  */
 const ForMap = ({items, children}) => {
@@ -44,14 +43,14 @@ const ForMap = ({items, children}) => {
     ++index;
   }
 
-  return components;
+  return render(components);
 };
 
 /**
  * Loop component for Set data type.
  * @param {Set} items
- * @param {React.ReactNode | Function | null} children
- * @returns {JSX.Element | ReactElement | null}
+ * @param {LoopFunction} children
+ * @returns {ReactNode | null}
  * @constructor
  */
 const ForSet = ({items, children}) => {
@@ -63,14 +62,14 @@ const ForSet = ({items, children}) => {
     ++index;
   }
 
-  return components;
+  return render(components);
 };
 
 /**
  * Loop component
  * @param {IteratorLike} items
- * @param {React.ReactNode | Function | null} children
- * @returns {JSX.Element | ReactElement | null}
+ * @param {LoopFunction} children
+ * @returns {ReactNode | null}
  * @constructor
  */
 export const For = ({items, children}) => {

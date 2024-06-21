@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import React from 'react';
-import { Case, Default, Switch } from '../dist';
+import {Case, Default, Switch} from '../dist';
 
 describe('Switch without match', () => {
   test('Truthy cases', () => {
@@ -20,6 +20,27 @@ describe('Switch without match', () => {
 
     expect(screen.queryByTestId('case1')).toBeNull();
     expect(screen.queryByTestId('case2')).toContainHTML('<span data-testid="case2">Case2</span>');
+  });
+
+  test('Truthy cases: Multi children of case', () => {
+    render(
+      <Switch>
+        <Case check={1 > 2}>
+          <span data-testid="case1">Case1</span>
+        </Case>
+        <Case check={1 < 2}>
+          <span data-testid="case2-1">Case2</span>
+          <span data-testid="case2-2">Case2</span>
+        </Case>
+        <Default>
+          <span data-testid="default">Default</span>
+        </Default>
+      </Switch>
+    );
+
+    expect(screen.queryByTestId('case1')).toBeNull();
+    expect(screen.queryByTestId('case2-1')).toContainHTML('<span data-testid="case2-1">Case2</span>');
+    expect(screen.queryByTestId('case2-2')).toContainHTML('<span data-testid="case2-2">Case2</span>');
   });
 
   test('Cast boolean case', () => {
@@ -180,13 +201,13 @@ describe('Inline syntax', () => {
       <Switch>
         <Case check={1 > 2} then={() => (
           <span data-testid="case1">Case1</span>
-        )} />
+        )}/>
         <Case check={1 < 2} then={() => (
           <span data-testid="case2">Case2</span>
-        )} />
+        )}/>
         <Default then={() => (
           <span data-testid="default">Default</span>
-        )} />
+        )}/>
       </Switch>
     );
 
@@ -200,10 +221,10 @@ describe('Inline syntax', () => {
       <Switch>
         <Case check={1 > 2} then={() => (
           <span data-testid="case1">Case1</span>
-        )} />
+        )}/>
         <Default then={() => (
           <span data-testid="default">Default</span>
-        )} />
+        )}/>
       </Switch>
     );
 

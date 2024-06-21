@@ -18,7 +18,7 @@ export function isObject(value) {
 
 /**
  * Render jsx component by its props.
- * @param {object} JSX component props
+ * @param {object} props JSX component props
  * @returns {*|null}
  */
 export const render = (props) => {

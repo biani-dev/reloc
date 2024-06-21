@@ -61,6 +61,27 @@ describe('For array', () => {
     expect(screen.getByTestId('child-3')).toContainHTML('<span data-testid="child-3">2-Lennon</span>');
   });
 
+  test('Truthy case: Multi children', () => {
+    render(
+      <div data-testid={`parent-for`}>
+        <For items={Object.values(items)}>
+          {(item, key, index) => (
+            <div>
+              <span key={index} data-testid={`child-${item.id}`}>{key}-{item.name}</span>
+              <span key={index} data-testid={`child-${item.id}`}>{key}-{item.name}</span>
+            </div>
+          )}
+        </For>
+      </div>
+    )
+    ;
+
+    expect(screen.getByTestId('parent-for').children.length).toBe(3);
+    expect(screen.getByTestId('child-1')).toContainHTML('<span data-testid="child-1">0-Museum</span>');
+    expect(screen.getByTestId('child-2')).toContainHTML('<span data-testid="child-2">1-Watch</span>');
+    expect(screen.getByTestId('child-3')).toContainHTML('<span data-testid="child-3">2-Lennon</span>');
+  });
+
   test('Empty case', () => {
     render(
       <div data-testid={`parent-for`}>
