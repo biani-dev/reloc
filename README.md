@@ -106,24 +106,36 @@ Only the **first matching case** will be rendered.
 import { Switch, Case, Default } from 'reloc';
 
 <Switch>
-  <Case is={status === DOING} then={() => <span>DOING</span>} />
-  <Case is={status === DONE} then={() => <span>DONE</span>} />
-  <Default then={() => <span>OTHER</span>} />
+  <Case is={status === DOING} then={() => (
+      <span>DOING</span>
+  )} />
+  <Case is={status === DONE} then={() => (
+      <span>DONE</span>
+  )} />
+  <Default then={() => (
+      <span>OTHER</span>
+  )} />
 </Switch>
 ```
 
-**Alternative syntax (recommended):**
+**Alternative syntax:**
 
 ```jsx
 <Switch>
   <Case is={status === DOING}>
-    {() => <span>DOING</span>}
+    {() => (
+        <span>DOING</span>
+    )}
   </Case>
   <Case is={status === DONE}>
-    {() => <span>DONE</span>}
+    {() => (
+        <span>DONE</span>
+    )}
   </Case>
   <Default>
-    {() => <span>OTHER</span>}
+    {() => (
+        <span>OTHER</span>
+    )}
   </Default>
 </Switch>
 ```
@@ -134,9 +146,15 @@ import { Switch, Case, Default } from 'reloc';
 
 ```jsx
 <Switch match={status}>
-  <Case is={DOING} then={() => <span>DOING</span>} />
-  <Case is={DONE} then={() => <span>DONE</span>} />
-  <Default then={() => <span>OTHER</span>} />
+  <Case is={DOING} then={() => (
+      <span>DOING</span>
+  )} />
+  <Case is={DONE} then={() => (
+      <span>DONE</span>
+  )} />
+  <Default then={() => (
+      <span>OTHER</span>
+  )} />
 </Switch>
 ```
 
@@ -146,9 +164,31 @@ import { Switch, Case, Default } from 'reloc';
 
 ```jsx
 <Switch match={1} strict={false}>
-  <Case is={'1'} then={() => <span>Passed</span>} />
-  <Case is={'2'} then={() => <span>Not passed</span>} />
-  <Default then={() => <span>Not passed</span>} />
+  <Case is={'1'} then={() => (
+      <span>Passed</span>
+  )} />
+  <Case is={'2'} then={() => (
+      <span>Not passed</span>
+  )} />
+  <Default then={() => (
+      <span>Not passed</span>
+  )} />
+</Switch>
+```
+
+**⚠️ Unsafe syntax (not recommended):**
+
+```jsx
+<Switch match={status}>
+    <Case is={'doing'}>
+        <span>Passed</span>
+    </Case>
+    <Case is={'done'}>
+        <span>Not Passed</span>
+    </Case>
+    <Default>
+        <span>Not passed</span>
+    </Default>
 </Switch>
 ```
 
