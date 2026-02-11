@@ -21,15 +21,15 @@ export const Switch = ({children, strict = true, match = undefined}) => {
     }
 
     if (child.type === Case) {
-      let {check: conditionResult} = child.props;
+      let {'is': passed} = child.props;
 
       // Complex condition mode.
-      if (match === undefined && Boolean(conditionResult)) {
+      if (match === undefined && Boolean(passed)) {
         return child;
       }
 
       // Switch mode.
-      if (strict ? (conditionResult === match) : (conditionResult == match)) {
+      if (strict ? (passed === match) : (passed == match)) {
         return child;
       }
     } else if (child.type === Default) {
@@ -42,13 +42,13 @@ export const Switch = ({children, strict = true, match = undefined}) => {
 
 /**
  *
- * @param {BooleanLike} check
+ * @param {BooleanLike} is
  * @param {NodeFunction} then
  * @param {NodeFunction} children
  * @returns {ReactNode | null}
  * @constructor
  */
-export const Case = ({check, then = null, children = null}) => {
+export const Case = ({is, then = null, children = null}) => {
   return render({children: (then || children)});
 };
 

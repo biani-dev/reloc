@@ -6,10 +6,10 @@ describe('Switch without match', () => {
   test('Truthy cases', () => {
     render(
       <Switch>
-        <Case check={1 > 2}>
+        <Case is={1 > 2}>
           <span data-testid="case1">Case1</span>
         </Case>
-        <Case check={1 < 2}>
+        <Case is={1 < 2}>
           <span data-testid="case2">Case2</span>
         </Case>
         <Default>
@@ -25,10 +25,10 @@ describe('Switch without match', () => {
   test('Truthy cases: Multi children of case', () => {
     render(
       <Switch>
-        <Case check={1 > 2}>
+        <Case is={1 > 2}>
           <span data-testid="case1">Case1</span>
         </Case>
-        <Case check={1 < 2}>
+        <Case is={1 < 2}>
           <span data-testid="case2-1">Case2</span>
           <span data-testid="case2-2">Case2</span>
         </Case>
@@ -46,7 +46,7 @@ describe('Switch without match', () => {
   test('Cast boolean case', () => {
     render(
       <Switch>
-        <Case check={[1, 2].length}>
+        <Case is={[1, 2].length}>
           <span data-testid="case1">Case1</span>
         </Case>
         <Default>
@@ -61,7 +61,7 @@ describe('Switch without match', () => {
   test('Default case', () => {
     render(
       <Switch>
-        <Case check={1 > 2}>
+        <Case is={1 > 2}>
           <span data-testid="case1">Case1</span>
         </Case>
         <Default>
@@ -76,10 +76,10 @@ describe('Switch without match', () => {
   test('Fall case', () => {
     render(
       <Switch>
-        <Case check={false}>
+        <Case is={false}>
           <span data-testid="case1">Case1</span>
         </Case>
-        <Case check={false}>
+        <Case is={false}>
           <span data-testid="case2">Case2</span>
         </Case>
       </Switch>
@@ -94,10 +94,10 @@ describe('Switch with match', () => {
   test('Truthy cases', () => {
     render(
       <Switch match={'2'}>
-        <Case check={'1'}>
+        <Case is={'1'}>
           <span data-testid="case1">Case1</span>
         </Case>
-        <Case check={'2'}>
+        <Case is={'2'}>
           <span data-testid="case2">Case2</span>
         </Case>
         <Default>
@@ -113,7 +113,7 @@ describe('Switch with match', () => {
   test('Default case', () => {
     render(
       <Switch match={'2'}>
-        <Case check={2}>
+        <Case is={2}>
           <span data-testid="case1">Case1</span>
         </Case>
         <Default>
@@ -128,10 +128,10 @@ describe('Switch with match', () => {
   test('Fall case', () => {
     render(
       <Switch match={'2'}>
-        <Case check={2}>
+        <Case is={2}>
           <span data-testid="case1">Case1</span>
         </Case>
-        <Case check={1}>
+        <Case is={1}>
           <span data-testid="case2">Case2</span>
         </Case>
       </Switch>
@@ -147,10 +147,10 @@ describe('Switch with match, disable check data type', () => {
   test('Truthy cases', () => {
     render(
       <Switch match={'2'} strict={false}>
-        <Case check={'1'}>
+        <Case is={'1'}>
           <span data-testid="case1">Case1</span>
         </Case>
-        <Case check={2}>
+        <Case is={2}>
           <span data-testid="case2">Case2</span>
         </Case>
         <Default>
@@ -166,7 +166,7 @@ describe('Switch with match, disable check data type', () => {
   test('Default case', () => {
     render(
       <Switch match={'2'} strict={false}>
-        <Case check={true}>
+        <Case is={true}>
           <span data-testid="case1">Case1</span>
         </Case>
         <Default>
@@ -181,10 +181,10 @@ describe('Switch with match, disable check data type', () => {
   test('Fall case', () => {
     render(
       <Switch match={'2'} strict={false}>
-        <Case check={true}>
+        <Case is={true}>
           <span data-testid="case1">Case1</span>
         </Case>
-        <Case check={false}>
+        <Case is={false}>
           <span data-testid="case2">Case2</span>
         </Case>
       </Switch>
@@ -199,10 +199,10 @@ describe('Inline syntax', () => {
   test('Truthy cases', () => {
     render(
       <Switch>
-        <Case check={1 > 2} then={() => (
+        <Case is={1 > 2} then={() => (
           <span data-testid="case1">Case1</span>
         )}/>
-        <Case check={1 < 2} then={() => (
+        <Case is={1 < 2} then={() => (
           <span data-testid="case2">Case2</span>
         )}/>
         <Default then={() => (
@@ -219,7 +219,7 @@ describe('Inline syntax', () => {
   test('Default case', () => {
     render(
       <Switch>
-        <Case check={1 > 2} then={() => (
+        <Case is={1 > 2} then={() => (
           <span data-testid="case1">Case1</span>
         )}/>
         <Default then={() => (

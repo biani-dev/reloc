@@ -5,7 +5,7 @@ import {If} from '../dist';
 describe('If', () => {
   test('Truthy case', () => {
     render(
-      <If check={1 < 2}>
+      <If is={1 < 2}>
         <span data-testid="child-if">If</span>
       </If>
     );
@@ -14,7 +14,7 @@ describe('If', () => {
 
   test('Truthy case: Multi children', () => {
     render(
-      <If check={1 < 2} then={() =>
+      <If is={1 < 2} then={() =>
         <div>
           <span data-testid="child-if1">If</span>
           <span data-testid="child-if2">If</span>
@@ -28,7 +28,7 @@ describe('If', () => {
 
   test('Falsy case', () => {
     render(
-      <If check={false}>
+      <If is={false}>
         <span data-testid="child-if">If</span>
       </If>
     );
@@ -38,7 +38,7 @@ describe('If', () => {
 
   test('Inline case', () => {
     render(
-      <If check={true} then={() => (
+      <If is={true} then={() => (
         <span data-testid="child-if">If</span>
       )}/>
     );

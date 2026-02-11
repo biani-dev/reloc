@@ -12,11 +12,11 @@ export type NodeFunction = () => ReactNode;
 
 export type LoopFunction = (item: unknown, key: string, index: number) => ReactNode;
 
-export declare const If: FC<PropsWithChildren<{ check: BooleanLike, then?: NodeFunction }>>;
+export declare const If: FC<PropsWithChildren<{ is: BooleanLike, then?: NodeFunction }>>;
 
 export declare const Switch: FC<PropsWithChildren<{ match?: BooleanLike, strict?: Boolean }>>;
 
-export declare const Case: FC<PropsWithChildren<{ check: BooleanLike, then?: NodeFunction }>>;
+export declare const Case: FC<PropsWithChildren<{ is: BooleanLike, then?: NodeFunction }>>;
 
 export declare const Default: FC<{ children?: NodeFunction, then?: NodeFunction }>;
 

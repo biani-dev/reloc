@@ -4,12 +4,12 @@ import {isFn, isObject, render} from './utils';
  * Loop component for Array data type.
  * @param {Array} items
  * @param {LoopFunction} children
- * @returns {ReactNode | null}
+ * @returns {ReactNode[] | null}
  * @constructor
  */
 const ForArray = ({items, children}) => {
   return items.map((item, index) => {
-    return children(item, index, index);
+    return children(item, index.toString(), index);
   });
 };
 
@@ -17,7 +17,7 @@ const ForArray = ({items, children}) => {
  * Loop component for Object data type.
  * @param {Object} items
  * @param {LoopFunction} children
- * @returns {ReactNode | null}
+ * @returns {ReactNode[] | null}
  * @constructor
  */
 const ForObject = ({items, children}) => {
@@ -37,13 +37,18 @@ const ForObject = ({items, children}) => {
 const ForMap = ({items, children}) => {
   const components = [];
 
+  console.log('ForMap------------- ', items);
+
   let index = 0;
   for (const [key, item] of items) {
+    console.log('item: ', item, key, index);
     components.push(children(item, key, index));
     ++index;
   }
 
-  return render(components);
+  console.log('components------------- ', components);
+
+  return components;
 };
 
 /**
