@@ -1,4 +1,4 @@
-const config = {
+export default {
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/test/**/*.test.(js|jsx)'],
   setupFilesAfterEnv: ['<rootDir>/test/jest.setup.js'],
@@ -6,5 +6,3 @@ const config = {
     __DEV__: true
   },
 };
-
-module.exports = config;

@@ -1,238 +1,252 @@
-# React logic components
+# Reloc – React Logic Components
 
 [![npm](https://img.shields.io/npm/v/reloc?logo=npm)](https://www.npmjs.com/package/reloc)
 [![License](https://img.shields.io/github/license/biani-dev/reloc?logo=github&logoColor=959DA5&labelColor=2D3339)](https://github.com/biani-dev/reloc/blob/main/LICENSE)
 [![Contact](https://img.shields.io/badge/contact-@TuyenNV-blue.svg?style=flat&logo=twitter)](https://twitter.com/tuyennv22)
 
-Provide the React control statements components &lt;If&gt;,  &lt;Switch&gt;,  &lt;For&gt;
-<hr>
+**Reloc** provides logic control components for React JSX, including:
+
+- `<If>` – simple conditional rendering  
+- `<Switch>`, `<Case>`, `<Default>` – complex conditional logic
+- `<For>` – iteration over collections  
+
+---
 
 ## Installation
-npm:
-```batch
-npm i reloc
-```
 
-yarn:
-```batch
+### npm
+```bash
+npm i reloc
+````
+
+### yarn
+
+```bash
 yarn add reloc
 ```
 
+---
+
 ## API
 
-### 1. Simple condition
-#### &lt;If&gt;
-| Property             | Type                      | Required |
-|----------------------|---------------------------|----------|
-| `check`              | Boolean                   | yes      |
-| `then` or `children` | ReactNode, Function, null | no       |
+## 1. Simple Conditional – `<If>`
 
-Example 01:
+### Props
+
+| Name                 | Type                        | Required | Description           |
+| -------------------- | --------------------------- | -------- | --------------------- |
+| `is`                 | Boolean                     | ✔        | Condition to evaluate |
+| `then` or `children` | ReactNode | Function | null | ✖        | Content to render     |
+
+### Examples
+
+**Recommended usage (with function):**
+
 ```jsx
-import { If } from  'reloc';
+import { If } from 'reloc';
 
-<If check={ obj } then={() => (
+<If is={obj} then={() => (
   <span>It is done</span>
 )} />
 ```
-or syntax:
+
+**Alternative syntax:**
+
 ```jsx
-<If check={status === DONE}>
+<If is={status === DONE}>
   {() => (
     <span>It is done</span>
   )}
 </If>
 ```
-or unsafe syntax (Not recommend, [see react issue 35](#issues35)):
+
+**⚠️ Unsafe syntax (not recommended):**
+
 ```jsx
-<If check={status === DONE}>
+<If is={status === DONE}>
   <span>It is done</span>
 </If>
 ```
 
-## 2. Complex conditional, Switch statements
-### &lt;Switch&gt;
-Only the first case that satisfies the condition will be rendered.
+---
 
-| Property     | Type                    | Required | Default | Description                                                                                                                                                                             |
-|--------------|-------------------------|----------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `match`      | Boolean, Number, String | no       |         | If the `match` has set value, the component works as a 'Switch mode.' Otherwise, it works as a complex conditional mode.                                                                |
-| `strict`     | Boolean                 | no       | true    | Only available for 'Switch mode.' If `strict` is true, it will check the data type of the `match` when comparing with the case value. See the example below for a better understanding. |
+## 2. Complex Conditionals – Switch / Case
 
-### &lt;Case&gt;
-| Property             | Type                      | Required |
-|----------------------|---------------------------|----------|
-| `check`              | Boolean                   | yes      |
-| `then` or `children` | ReactNode, Function, null | no       |
+### `<Switch>`
 
-### &lt;Default&gt;
-| Property             | Type                      | Required |
-|----------------------|---------------------------|----------|
-| `-`                  |                           |          |
-| `then` or `children` | ReactNode, Function, null | no       |
+Only the **first matching case** will be rendered.
 
-Example 02 - Complex condition:
+| Prop     | Type                    | Required | Default | Description                                         |
+| -------- |-------------------------| -------- | ------- | --------------------------------------------------- |
+| `match`  | Boolean, Number, String | ✖        | `true`  | Value to compare against cases                      |
+| `strict` | Boolean                 | ✖        | `true`  | When enabled, comparison checks both value and type |
+
+---
+
+### `<Case>`
+
+| Prop                 | Type                        | Required |
+| -------------------- | --------------------------- | -------- |
+| `is`                 | Boolean                     | ✔        |
+| `then` or `children` | ReactNode | Function | null | ✖        |
+
+---
+
+### `<Default>`
+
+| Prop                 | Type                        | Required |
+| -------------------- | --------------------------- | -------- |
+| `then` or `children` | ReactNode | Function | null | ✖        |
+
+---
+
+### Example 1: Conditional logic
+
 ```jsx
-import {Switch, Case, Default} from  'reloc';
+import { Switch, Case, Default } from 'reloc';
 
 <Switch>
-  <Case check={status === DOING} then={() => (
-    <span>DOING</span>
-  )} />
-  <Case check={status === DONE} then={() => (
-    <span>DONE</span>
-  )} />
-  <Default then={() => (
-    <span>OTHER</span>
-  )} />
+  <Case is={status === DOING} then={() => <span>DOING</span>} />
+  <Case is={status === DONE} then={() => <span>DONE</span>} />
+  <Default then={() => <span>OTHER</span>} />
 </Switch>
 ```
-<details>
-<summary>or syntax:</summary>
+
+**Alternative syntax (recommended):**
 
 ```jsx
-import {Switch, Case, Default} from  'reloc';
-
 <Switch>
-  <Case check={status === DOING}>
-    {() => (
-      <span>DOING</span>
-    )}
+  <Case is={status === DOING}>
+    {() => <span>DOING</span>}
   </Case>
-  <Case check={status === DONE}>
-    {() => (
-      <span>DONE</span>
-    )}
+  <Case is={status === DONE}>
+    {() => <span>DONE</span>}
   </Case>
   <Default>
-    {() => (
-      <span>OTHER</span>
-    )}
+    {() => <span>OTHER</span>}
   </Default>
 </Switch>
 ```
-</details>
 
-<details>
-<summary>or unsafe syntax (Not recommend, [see react issue 35](#issues35)):</summary>
+---
+
+### Example 2: Switch mode
 
 ```jsx
-import {Switch, Case, Default} from  'reloc';
-
-<Switch>
-  <Case check={status === DOING}>
-    <span>DOING</span>
-  </Case>
-  <Case check={status === DONE}>
-    <span>DONE</span>
-  </Case>
-  <Default>
-    <span>OTHER</span>
-  </Default>
-</Switch>
-```
-</details>
-
-Example 03: Switch mode:
-```jsx
-import {Switch, Case, Default} from  'reloc';
-
 <Switch match={status}>
-  <Case check={DOING} then={() => (
-    <span>DOING</span>
-  )} />
-  <Case check={DONE} then={() => (
-    <span>DONE</span>
-  )} />
-  <Default then={() => (
-    <span>OTHER</span>
-  )} />
+  <Case is={DOING} then={() => <span>DOING</span>} />
+  <Case is={DONE} then={() => <span>DONE</span>} />
+  <Default then={() => <span>OTHER</span>} />
 </Switch>
 ```
-_Deferred syntax, alternative syntax similar to example 02._
 
-Example 04: Switch mode with the `strict` prop off:
+---
+
+### Example 3: Switch mode with `strict={false}`
+
 ```jsx
-import {Switch, Case, Default} from  'reloc';
-
 <Switch match={1} strict={false}>
-  <Case check={'1'} then={() => (
-    <span>Passed</span>
-  )} />
-  <Case check={'2'} then={() => (
-    <span>Not passed</span>
-  )} />
-  <Default then={() => (
-    <span>Not passed</span>
-  )} />
+  <Case is={'1'} then={() => <span>Passed</span>} />
+  <Case is={'2'} then={() => <span>Not passed</span>} />
+  <Default then={() => <span>Not passed</span>} />
 </Switch>
 ```
-_Deferred syntax, alternative syntax similar to example 02._
 
-## 3. Loop
-### &lt;For&gt;
-Support Array, Set, Map, Object data types.
+---
 
-| Property   | Type                                                                       | Required | Description                                                                                   |
-|------------|----------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------------------|
-| `items`    | Array, Map, Set, Object                                                    | yes      |                                                                                               |
-| `children` | Function: (item: any, key: String&#124;Number, index: Number) => ReactNode | yes      | If the data type of the `items` is an Array or Set, the 'key' value will reference the index. |
+## 3. Loop – `<For>`
 
-Example 05:
+Supported data types:
+
+* `Array`
+* `Set`
+* `Map`
+* `Object`
+
+### Props
+
+| Name       | Type                              | Required | Description           |
+| ---------- |-----------------------------------| -------- | --------------------- |
+| `items`    | Array, Set, Map, Object           | ✔        | Collection to iterate |
+| `children` | `(item, key, index) => ReactNode` | ✔        | Render function       |
+
+> For `Array` and `Set`, `key` is the same as `index`.
+
+### Example
+
 ```jsx
-import {For} from  'reloc';
+import { For } from 'reloc';
 
 <For items={items}>
   {(item, key, index) => (
-    <span key={key}>{index}: {item.name}</span>
+    <span key={key}>
+      {index}: {item.name}
+    </span>
   )}
 </For>
 ```
-or unsafe syntax:
+
+---
+
+## Important: Deferring Evaluation of Children
+
+JavaScript uses **eager evaluation**, meaning JSX expressions are executed even when conditions are false.
+
+### Incorrect ❌
+
 ```jsx
-<For items={items} children={(item, key, index) => (
-  <span key={key}>{index}: {item.name}</span>
+<If is={obj}>
+  <span>{obj.attr}</span>
+</If>
+```
+
+This will throw an error if `obj` is `undefined`.
+
+### Correct ✅
+
+```jsx
+
+<If is={obj} then={() => (
+    <span>{obj.attr}</span>
 )} />
 ```
 
+Or:
 
-## Important: Deferring evaluation of children
-
-It's crucial to understand that in JavaScript, which is an eagerly evaluated language, the code inside both the &lt;If&gt;, &lt;Case&gt;, &lt;Default&gt;, and &lt;For&gt; components will be executed even if the condition turns out to be false.
-
-More specifically, the following code will throw an error `obj is not defined`:
 ```jsx
-<If check={ obj }>
-  <span>{ obj.attr }</span>
+<If is={obj}>
+    {() => (
+        <span>{obj.attr}</span>
+    )}
 </If>
 ```
-To fix this issue, the code should be written like this:
-```jsx
-<If check={ obj }>
-  {() =>  (
-    <span>{ obj.attr }</span>
-  )}
-</If>
-```
-or alternative syntax:
-```jsx
-<If check={ obj } then={() => (
-  <span>{ obj.attr }</span>
-)} />
-```
 
-Therefore, for safety and efficiency reasons, it's recommended to use arrow functions for the child components of &lt;If&gt;, &lt;Case&gt;, &lt;Default&gt;, &lt;For&gt;.
+👉 **Recommendation:** Always use **arrow functions** for `children` in:
 
-For more discussion on If in React by the react team, have a look at <a href="https://github.com/reactjs/react-future/issues/35" id="issues35">https://github.com/reactjs/react-future/issues/35</a>.
+* `<If>`
+* `<Case>`
+* `<Default>`
+* `<For>`
+
+For more discussion, see the React team issue:
+[https://github.com/reactjs/react-future/issues/35](https://github.com/reactjs/react-future/issues/35)
+
+---
 
 ## Alternative Solutions
-As mentioned above, this package doesn't always run with the cleanest and most readable syntax. You'll need to use arrow functions for cases where children have complex logic to ensure safety.
 
-So, is there any solution for a more comprehensive implementation of control statements in JSX? The answer is YES. You can refer to the following packages:
-- [jsx-control-statements](https://www.npmjs.com/package/babel-plugin-jsx-control-statements)
-- [tsx-control-statements](https://www.npmjs.com/package/tsx-control-statements)
+Reloc prioritizes long-term compatibility with React, though the syntax may feel verbose in some cases.
 
-These are packages I really like but have to be cautious about due to the following limitations:
-- Compatibility: They only support a specific transpiler (babel, tsx). As of the current date (2024-01-06), jsx-control-statements doesn't work with popular bundlers like Vite, esbuild, microbundle, etc.
-- Long-term support: Solutions using React components to implement control statements will remain compatible with newer React versions as long as React ensures backward compatibility. Projects based on transpiler plugins may need updates when a new transpiler version is released.
-- IDE lacks code highlighting support.
+If you prefer JSX syntax closer to native control statements, consider:
+
+* [babel-plugin-jsx-control-statements](https://www.npmjs.com/package/babel-plugin-jsx-control-statements)
+* [tsx-control-statements](https://www.npmjs.com/package/tsx-control-statements)
+
+### Limitations of these approaches:
+
+* ❌ Depend on specific transpilers (babel, tsx)
+* ❌ Limited compatibility with modern bundlers (Vite, esbuild, microbundle)
+* ❌ Poor IDE syntax highlighting
+* ❌ Potential maintenance issues when upgrading transpilers
+
+👉 A React-component-based approach like **Reloc** is generally safer and more future-proof.

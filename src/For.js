@@ -1,4 +1,4 @@
-import {isFn, isObject, render} from './utils';
+import {isFn, isObject} from './utils';
 
 /**
  * Loop component for Array data type.
@@ -31,50 +31,33 @@ const ForObject = ({items, children}) => {
  * Loop component for Map data type.
  * @param {Map} items
  * @param {LoopFunction} children
- * @returns {ReactNode | null}
+ * @returns {ReactNode[] | null}
  * @constructor
  */
 const ForMap = ({items, children}) => {
-  const components = [];
-
-  console.log('ForMap------------- ', items);
-
-  let index = 0;
-  for (const [key, item] of items) {
-    console.log('item: ', item, key, index);
-    components.push(children(item, key, index));
-    ++index;
-  }
-
-  console.log('components------------- ', components);
-
-  return components;
+  return [...items].map(([key, item], index) => {
+    return children(item, key, index);
+  });
 };
 
 /**
  * Loop component for Set data type.
  * @param {Set} items
  * @param {LoopFunction} children
- * @returns {ReactNode | null}
+ * @returns {ReactNode[] | null}
  * @constructor
  */
 const ForSet = ({items, children}) => {
-  const components = [];
-
-  let index = 0;
-  for (const item of items) {
-    components.push(children(item, index, index));
-    ++index;
-  }
-
-  return render(components);
+  return  [...items].map((item, index) => {
+    return children(item, index.toString(), index);
+  });
 };
 
 /**
  * Loop component
  * @param {IteratorLike} items
  * @param {LoopFunction} children
- * @returns {ReactNode | null}
+ * @returns {ReactNode[] | null}
  * @constructor
  */
 export const For = ({items, children}) => {

@@ -98,7 +98,7 @@ describe('For array', () => {
 
 describe('For map', () => {
   test('Truthy case: map', () => {
-    const { container } = render(
+    render(
       <div data-testid={`parent-for`}>
         <For items={new Map(Object.entries(items))}>
           {(item, key, index) => (
@@ -107,8 +107,6 @@ describe('For map', () => {
         </For>
       </div>
     );
-
-    console.log(container.innerHTML);
 
     expect(screen.getByTestId('parent-for').children.length).toBe(3);
     expect(screen.getByTestId('child-1')).toContainHTML('<span data-testid="child-1">k1-Museum</span>');
@@ -144,10 +142,10 @@ describe('For set', () => {
       </div>
     );
 
-    // expect(screen.getByTestId('parent-for').children.length).toBe(3);
-    // expect(screen.getByTestId('child-1')).toContainHTML('<span data-testid="child-1">0-Museum</span>');
-    // expect(screen.getByTestId('child-2')).toContainHTML('<span data-testid="child-2">1-Watch</span>');
-    // expect(screen.getByTestId('child-3')).toContainHTML('<span data-testid="child-3">2-Lennon</span>');
+     expect(screen.getByTestId('parent-for').children.length).toBe(3);
+     expect(screen.getByTestId('child-1')).toContainHTML('<span data-testid="child-1">0-Museum</span>');
+     expect(screen.getByTestId('child-2')).toContainHTML('<span data-testid="child-2">1-Watch</span>');
+     expect(screen.getByTestId('child-3')).toContainHTML('<span data-testid="child-3">2-Lennon</span>');
   });
 
   test('Empty case: set', () => {

@@ -1,20 +1,11 @@
 {
   "name": "reloc",
-  "version": "1.2.4",
+  "version": "2.0.0",
   "description": "React logic (control statements) components",
   "author": "TuyenNV <tuyennv.se@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.esm.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/index.esm.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
   "sideEffects": false,
   "homepage": "https://github.com/biani-dev/reloc",
   "files": [
@@ -25,8 +16,10 @@
     "url": "git+https://github.com/biani-dev/reloc.git"
   },
   "scripts": {
-    "build": "microbundle build -i src/index.js -o dist/index.js --jsx React.createElement && cp src/*.d.ts dist/",
-    "test": "jest",
+    "build:esm": "esbuild src/index.js --bundle --format=esm --target=es2018 --jsx-factory=React.createElement --jsx-fragment=React.Fragment --external:react --outfile=dist/index.js",
+    "build:cjs": "esbuild src/index.js --bundle --format=cjs --target=es2018 --jsx-factory=React.createElement --jsx-fragment=React.Fragment --external:react --outfile=dist/index.cjs.js",
+    "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
+    "test": "yarn build && jest",
     "update": "yarn upgrade-interactive"
   },
   "devDependencies": {
@@ -36,9 +29,9 @@
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
     "babel-jest": "^29.7.0",
+    "esbuild": "^0.27.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "microbundle": "^0.15.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -47,5 +40,6 @@
   },
   "peerDependencies": {
     "react": "^16.x || ^17.x || ^18.x || ^19.x"
-  }
+  },
+  "dependencies": {}
 }
