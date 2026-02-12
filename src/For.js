@@ -21,8 +21,7 @@ const ForArray = ({items, children}) => {
  * @constructor
  */
 const ForObject = ({items, children}) => {
-  return Object.entries(items).map((entry, index) => {
-    const [key, item] = entry;
+  return Object.entries(items).map(([key, item], index) => {
     return children(item, key, index);
   });
 };
