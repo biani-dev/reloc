@@ -43,3 +43,5 @@ coverage/
 # Ignore package locks
 package-lock.json
 yarn.json
+
+.publish-npm.sh
