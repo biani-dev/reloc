@@ -1,6 +1,7 @@
 #!/bin/bash
+#npm login
 npm test
-npm build
+npm run build
 cp src/index.d.ts dist/
 npm pack
 npm publish

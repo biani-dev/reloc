@@ -18,8 +18,8 @@ export declare module 'reloc' {
     // -------------------------------------------------------------------------
     interface IfProps {
         is: boolean;
-        then?: (value: true) => ReactNode;
-        children?: (value: true) => ReactNode;
+        then?: (value?: true) => ReactNode;
+        children?: (value?: true) => ReactNode;
     }
 
     export const If: FC<IfProps>;
@@ -40,8 +40,8 @@ export declare module 'reloc' {
     // -------------------------------------------------------------------------
     interface CaseProps {
         is: any;
-        then?: (value: true) => ReactNode;
-        children?: (value: true) => ReactNode;
+        then?: (value?: true) => ReactNode;
+        children?: (value?: true) => ReactNode;
     }
 
     export const Case: FC<CaseProps>;
@@ -89,13 +89,13 @@ export declare module 'reloc' {
         | ForObjectProps<Record<any, T>>;
 
     // Overload để TypeScript infer tốt hơn
-    export function For<T>(props: ForArrayProps<T>): JSX.Element;
-    export function For<T>(props: ForSetProps<T>): JSX.Element;
-    export function For<K, V>(props: ForMapProps<K, V>): JSX.Element;
-    export function For<T extends Record<any, any>>(props: ForObjectProps<T>): JSX.Element;
+    export function For<T>(props: ForArrayProps<T>): ReactNode;
+    export function For<T>(props: ForSetProps<T>): ReactNode;
+    export function For<K, V>(props: ForMapProps<K, V>): ReactNode;
+    export function For<T extends Record<any, any>>(props: ForObjectProps<T>): ReactNode;
 
     // Export chung (fallback)
     export const For: {
-        <T>(props: ForProps<T>): JSX.Element;
+        <T>(props: ForProps<T>): ReactNode;
     };
 }
