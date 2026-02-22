@@ -18,8 +18,8 @@ export declare module 'reloc' {
     // -------------------------------------------------------------------------
     interface IfProps {
         is: boolean;
-        then?: (value?: true) => ReactNode;
-        children?: (value?: true) => ReactNode;
+        then?: () => ReactNode;
+        children?: () => ReactNode;
     }
 
     export const If: FC<IfProps>;
@@ -40,8 +40,8 @@ export declare module 'reloc' {
     // -------------------------------------------------------------------------
     interface CaseProps {
         is: any;
-        then?: (value?: true) => ReactNode;
-        children?: (value?: true) => ReactNode;
+        then?: () => ReactNode;
+        children?: () => ReactNode;
     }
 
     export const Case: FC<CaseProps>;
