@@ -1,4 +1,4 @@
-import type {FC, ReactNode} from 'react';
+import type {FC, ReactNode, JSX} from 'react';
 
 export declare module 'reloc' {
     // eslint-disable-next-line @typescript-eslint/ban-types
@@ -9,7 +9,8 @@ export declare module 'reloc' {
     // @ts-ignore
     type IteratorLike = Array<any> | Set<any> | Map<string, any> | NonNullObject;
 
-    type NodeFunction = () => ReactNode;
+    type Nodeable = ReactNode | JSX.Element | Element;
+    type Childrenable = (() => Nodeable) | Nodeable;
 
     type LoopFunction = (item: unknown, key: string, index: number) => ReactNode;
 
@@ -18,8 +19,8 @@ export declare module 'reloc' {
     // -------------------------------------------------------------------------
     interface IfProps {
         is: boolean;
-        then?: () => ReactNode;
-        children?: () => ReactNode;
+        then?: Childrenable;
+        children?: Childrenable;
     }
 
     export const If: FC<IfProps>;
@@ -40,8 +41,8 @@ export declare module 'reloc' {
     // -------------------------------------------------------------------------
     interface CaseProps {
         is: any;
-        then?: () => ReactNode;
-        children?: () => ReactNode;
+        then?: Childrenable;
+        children?: Childrenable;
     }
 
     export const Case: FC<CaseProps>;
@@ -50,8 +51,8 @@ export declare module 'reloc' {
     // <Default />
     // -------------------------------------------------------------------------
     interface DefaultProps {
-        then?: () => ReactNode;
-        children?: () => ReactNode;
+        then?: Childrenable;
+        children?: Childrenable;
     }
 
     export const Default: FC<DefaultProps>;
